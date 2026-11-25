@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#57418f">
+<title>Грамматический переполох — викторина для 4 класса</title>
+<style>
+:root{--text:#29233c;--muted:#706b7d;--border:#e4dff0;--card:#fff;--panel:#f8f6fc}
+*{box-sizing:border-box}
+body{margin:0;padding:20px;background-color:#e8f5ff;background-image:radial-gradient(circle at 12% 18%,#ffffffd9 0 2px,transparent 3px),radial-gradient(circle at 82% 12%,#ffffffd9 0 3px,transparent 4px),radial-gradient(circle at 35% 72%,#ffffffb8 0 2px,transparent 3px),radial-gradient(circle at 91% 66%,#ffffffd9 0 2px,transparent 3px),linear-gradient(145deg,#d9efff 0%,#edf8ff 42%,#dcecff 100%);background-size:140px 140px,190px 190px,170px 170px,220px 220px,cover;background-attachment:fixed;font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--text)}
+#gramquest{max-width:850px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#123e70 0%,#247fb0 48%,#7658b8 100%);border:2px solid #b9e7ff;border-radius:26px;padding:27px 22px;color:white;position:relative;overflow:hidden;box-shadow:0 14px 34px #174b782b;text-align:center}
+.hero:before{content:"❄  ✦  ❄  ✧  ❄";position:absolute;left:12px;top:12px;font-size:22px;color:#dff7ff;opacity:.9}
+.hero:after{content:"❄  ✧  ❄  ✦  ❄";position:absolute;right:12px;bottom:12px;font-size:22px;color:#ffe9a8;opacity:.9}
+.kicker{font-size:12px;font-weight:900;letter-spacing:2px;opacity:.95;text-align:center}
+.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.05;margin:17px auto 10px;text-align:center;text-shadow:0 3px 0 #243f75,0 5px 15px #152d5c80}
+.hero p{margin:0 auto;max-width:530px;text-align:center;font-size:16px}
+.hero .scoreline{max-width:430px;margin:22px auto 0;text-align:left}
+.hero .scoreline>div:last-child{font-size:52px!important}
+.scoreline{display:flex;justify-content:space-between;align-items:end;margin-top:22px;gap:12px}
+.score{font-size:30px;font-weight:900}
+.panel{border-radius:20px;padding:19px;border:1px solid #c9e4f5;background:rgba(255,255,255,.94);box-shadow:0 7px 24px #285d8312;backdrop-filter:blur(5px)}
+.progress{height:11px;border-radius:20px;background:#eeeaf5;overflow:hidden}
+.progress>div{height:100%;background:linear-gradient(90deg,#f6b84a,#ec6b91);transition:width .3s}
+.level{border-radius:14px;padding:12px 6px;text-align:center;font-weight:900;font-size:13px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.introgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.tile{border-radius:14px;padding:13px;font-size:13px;font-weight:800}
+.mainbtn{background:linear-gradient(100deg,#7550bd,#a64eac);color:white;border:0;border-radius:13px;padding:14px 20px;font-size:15px;font-weight:900;width:100%;cursor:pointer;box-shadow:0 5px 12px #7550bd30}
+.mainbtn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.answer{border:2px solid var(--border);border-radius:13px;padding:13px;text-align:left;width:100%;font-weight:700;transition:.15s;background:#faf9fd;color:var(--text);cursor:pointer;font-size:15px}
+.answer:hover{border-color:#a78bfa;transform:translateY(-1px)}
+.answer.chosen{border-color:#8b5cf6;background:#8b5cf61c}
+.answer.correct{border-color:#22a06b;background:#22a06b18}
+.answer.wrong{border-color:#e36a72;background:#e36a7218}
+.word{display:inline-flex;align-items:center;justify-content:center;border:2px solid #b69ae9;background:#f0e8ff;color:#50328b;border-radius:12px;padding:9px 13px;margin:4px;font-weight:900;cursor:grab;touch-action:manipulation}
+.word.used{opacity:.35;cursor:default}
+.dropzone{border:2px dashed #b69ae9;border-radius:14px;padding:10px;min-height:125px;background:#9b7ad00b}
+.dropzone.over{background:#a78bfa25;border-color:#8055c5}
+.dropzone .word{font-size:12px;padding:6px 9px;cursor:default}
+.feedback{border-radius:13px;padding:13px;font-size:14px;font-weight:700;line-height:1.5}
+.hidden{display:none!important}
+button:focus-visible{outline:3px solid #f0b84a;outline-offset:3px}
+.items{margin-top:7px;min-height:30px}
+.muted{color:var(--muted)}
+@media(max-width:560px){body{padding:10px}.panel{padding:14px}.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.hero{padding:20px}.dropzone{min-height:90px}}
+@media(prefers-reduced-motion:no-preference){.pop{animation:pop .3s ease-out}@keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:scale(1);opacity:1}}}
+</style>
+</head>
+<body>
+<div id="gramquest">
+<header class="hero">
+ <div class="kicker">❄️ БОЛЬШОЕ ЗИМНЕЕ ПРИКЛЮЧЕНИЕ • 4 КЛАСС ❄️</div>
+ <h1>Грамматический<br>переполох!</h1>
+ <p>Спаси Королевство слов от проделок вредного Кляксуса!</p>
+ <div class="scoreline"><div><div style="font-size:12px;opacity:.85">Твои сокровища</div><div class="score">⭐ <span id="score">0</span> <span style="font-size:15px;font-weight:600">/ 24</span></div></div><div style="font-size:48px">🧙‍♂️📚</div></div>
+</header>
+<section class="panel" style="margin-top:14px">
+ <div style="display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:900;margin-bottom:9px"><span id="progressLabel">Путешествие начинается</span><span id="progressNum">0 / 16</span></div>
+ <div class="progress"><div id="progressBar" style="width:0%"></div></div>
+ <div class="grid4" style="margin-top:12px">
+  <div class="level" style="background:#fce2e9;color:#943b62">🎩<br>Суффиксы</div>
+  <div class="level" style="background:#dceeff;color:#315b91">🔐<br>Ъ и Ь</div>
+  <div class="level" style="background:#ddf3df;color:#34734a">🌳<br>Части речи</div>
+  <div class="level" style="background:#eee3ff;color:#64449b">🧩<br>Состав</div>
+ </div>
+</section>
+<section id="intro" class="panel" style="margin-top:14px;text-align:center">
+ <div style="font-size:65px">🏰❄️</div><h2 style="margin:4px 0 8px">Королевство слов в опасности!</h2>
+ <p class="muted">Кляксус перепутал буквы, спрятал окончания и перемешал части речи. Пройди четыре испытания и верни порядок!</p>
+ <div class="introgrid" style="text-align:left;margin:17px 0">
+  <div class="tile" style="background:#fce2e9;color:#843b59">🎩 4 задания о суффиксах</div>
+  <div class="tile" style="background:#dceeff;color:#315b91">🔐 4 задания о знаках</div>
+  <div class="tile" style="background:#ddf3df;color:#34734a">🌳 4 задания о частях речи</div>
+  <div class="tile" style="background:#eee3ff;color:#64449b">🧩 4 задания о составе</div>
+ </div>
+ <p class="muted" style="font-size:13px">15 заданий с выбором ответа и одна большая сортировка слов. Слова можно перетаскивать мышкой или нажимать по очереди.</p>
+ <button id="start" class="mainbtn">🚀 Начать приключение!</button>
+</section>
+<section id="game" class="hidden" style="margin-top:14px">
+ <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin:0 2px 10px"><b id="chapter">🎩 Мастерская суффиксов</b><b id="qcount">Задание 1</b></div>
+ <div class="panel pop">
+  <div style="display:flex;justify-content:space-between;align-items:center"><span id="qtag" class="muted" style="font-size:12px;font-weight:900;letter-spacing:1px">ИСПЫТАНИЕ</span><span id="qemoji" style="font-size:26px">🎩</span></div>
+  <h2 id="question" style="font-size:22px;line-height:1.3;margin:14px 0 18px"></h2>
+  <div id="standard" style="display:grid;gap:9px"></div>
+  <div id="sorting" class="hidden">
+   <p class="muted" style="font-size:14px">Распредели каждое слово по правильной корзине. Перетащи его мышкой или нажми на слово, затем на корзину.</p>
+   <div id="wordbank" style="border-radius:13px;padding:8px;min-height:60px;background:#faf9fd;border:1px solid var(--border)"></div>
+   <div class="grid3" style="grid-template-columns:repeat(5,minmax(0,1fr));margin-top:12px">
+    <div class="dropzone" data-zone="noun"><b style="display:block;text-align:center;font-size:13px">🧺 СУЩЕСТВИТЕЛЬНОЕ</b><div class="muted" style="text-align:center;font-size:12px">кто? что?</div><div class="items"></div></div>
+    <div class="dropzone" data-zone="numeral"><b style="display:block;text-align:center;font-size:13px">🔢 ЧИСЛИТЕЛЬНОЕ</b><div class="muted" style="text-align:center;font-size:12px">сколько? который?</div><div class="items"></div></div>
+    <div class="dropzone" data-zone="pronoun"><b style="display:block;text-align:center;font-size:13px">👤 МЕСТОИМЕНИЕ</b><div class="muted" style="text-align:center;font-size:12px">кто? что?</div><div class="items"></div></div>
+    <div class="dropzone" data-zone="verb"><b style="display:block;text-align:center;font-size:13px">⚡ ГЛАГОЛ</b><div class="muted" style="text-align:center;font-size:12px">что делать? что сделать?</div><div class="items"></div></div>
+    <div class="dropzone" data-zone="adj"><b style="display:block;text-align:center;font-size:13px">🌼 ПРИЛАГАТЕЛЬНОЕ</b><div class="muted" style="text-align:center;font-size:12px">какой? какая? какое?</div><div class="items"></div></div>
+   </div>
+   <div id="placed" class="muted" style="font-size:12px;margin-top:8px">Разложено: 0 из 10</div>
+  </div>
+  <div id="feedback" class="feedback hidden" style="margin-top:15px"></div>
+  <button id="check" class="mainbtn" style="margin-top:16px">Проверить ответ ✓</button>
+  <button id="next" class="mainbtn hidden" style="margin-top:16px">Дальше ➜</button>
+ </div>
+ <p class="muted" style="text-align:center;font-size:12px;margin-top:12px">💡 Не спеши! Внимательно читай задание.</p>
+</section>
+<section id="finish" class="panel hidden" style="margin-top:14px;text-align:center">
+ <div id="medal" style="font-size:65px">🏆</div><h2 style="font-size:29px;margin:5px 0">Приключение завершено!</h2>
+ <p class="muted">Кляксус побеждён, а Королевство слов спасено!</p>
+ <div style="border-radius:20px;padding:22px;background:linear-gradient(130deg,#fff0c9,#f9d9eb);margin:17px 0">
+  <div style="font-size:12px;font-weight:900;color:#66536d">ТВОЙ РЕЗУЛЬТАТ</div>
+  <div style="font-size:52px;font-weight:1000;color:#573486"><span id="finalscore">0</span><span style="font-size:20px"> / 25</span></div>
+  <div id="stars" style="font-size:25px;margin:5px">⭐⭐⭐</div>
+  <div id="rank" style="font-size:21px;font-weight:900;color:#573486"></div>
+  <div id="message" style="font-size:14px;color:#59465c;margin-top:8px"></div>
+ </div>
+ <div class="grid3" style="margin:12px 0">
+  <div class="tile" style="background:#f5f1fb">Обычные ответы<br><b id="regularScore">0 / 15</b></div>
+  <div class="tile" style="background:#f5f1fb">Сортировка слов<br><b id="sortScore">0 / 10</b></div>
+  <div class="tile" style="background:#f5f1fb">Всего заданий<br><b>16</b></div>
+ </div>
+ <div style="text-align:left"><b>📜 Результаты испытаний</b><div id="report" style="display:grid;gap:8px;margin-top:10px"></div></div>
+ <button id="restart" class="mainbtn" style="margin-top:18px">🔄 Сыграть ещё раз</button>
+</section>
+<footer class="muted" style="font-size:11px;text-align:center;padding:16px">🌟 Каждое правильное слово приближает победу!</footer>
+</div>
+<script>
+(()=>{
+const root=document.getElementById('gramquest');if(root.dataset.ready)return;root.dataset.ready="1";
+const $=id=>document.getElementById(id);
+const chapters=[
+{title:'🎩 Мастерская суффиксов',emoji:'🎩',qs:[
+{q:'В каком слове гласная в суффиксе сохраняется при изменении формы?',o:['Замоч…к — замочка','Билет…к — билетика','Ореш…к — орешка','Платоч…к — платочка'],a:1,why:'Билетик — билетика. Буква И сохраняется, поэтому пишем суффикс -ик.'},
+{q:'Выбери правильное написание: маленький орех — это…',o:['орешик','орешок','орешек','орешонок'],a:2,why:'Орешек — орешка. Гласная Е в суффиксе исчезает.'},
+{q:'Как правильно написать название маленькой мыши?',o:['мышик','мышек','мышонок','мышинок'],a:2,why:'Мышонок. Суффикс -онок пишется после шипящей под ударением.'},
+{q:'В каком ряду оба слова написаны правильно?',o:['кружок, мышонок','кружек, мышинок','кружик, мышенок','кружок, мышинок'],a:0,why:'Кружок и мышонок: после шипящих под ударением в этих суффиксах пишется О.'}
+]},
+{title:'🔐 Замок твёрдых и мягких знаков',emoji:'🔐',qs:[
+{q:'Кляксус украл букву! В каком слове нужен Ъ?',o:['в…юга','под…езд','сем…я','руч…и'],a:1,why:'Подъезд. Разделительный Ъ пишется после приставки на согласную перед Е, Ё, Ю, Я.'},
+{q:'В каком слове нужен разделительный Ь?',o:['об…явление','с…ёмка','обез…яна','под…ём'],a:2,why:'Обезьяна. После согласной перед Я пишется разделительный мягкий знак.'},
+{q:'В каком слове Ь показывает мягкость предшествующего согласного?',o:['семья','вьюга','письмо','обезьяна'],a:2,why:'Письмо. Мягкий знак смягчает согласный С.'},
+{q:'В каком слове Ь показывает, что существительное женского рода?',o:['ручьи','ночь','вьюга','подъём'],a:1,why:'Ночь — существительное женского рода, оканчивается на шипящий, поэтому пишется Ь.'}
+]},
+{title:'🌳 Волшебный сад частей речи',emoji:'🌳',qs:[
+{q:'Какое слово — имя прилагательное?',o:['радость','радостный','радоваться','радостно'],a:1,why:'Радостный — прилагательное. Отвечает на вопрос какой? и обозначает признак предмета.'},
+{q:'Найди глагол в предложении: «Весёлые ребята быстро бегут».',o:['весёлые','ребята','быстро','бегут'],a:3,why:'Бегут — глагол, обозначает действие и отвечает на вопрос что делают?'},
+{q:'Какое слово является именем существительным?',o:['синий','синева','синеть','синевато'],a:1,why:'Синева — существительное, отвечает на вопрос что?'},
+{type:'sort',q:'Помоги садовнику рассадить слова по пяти волшебным корзинам! Все слова перемешаны — внимательно определи часть речи.',words:[['пятый','numeral'],['улыбается','verb'],['книга','noun'],['она','pronoun'],['высокое','adj'],['семь','numeral'],['ученик','noun'],['мы','pronoun'],['прыгают','verb'],['пушистый','adj']],why:'Существительное называет предмет; прилагательное — признак предмета; числительное — количество или порядок при счёте; глагол — действие или состояние; местоимение указывает на предмет, но не называет его.'}
+]},
+{title:'🧩 Лабиринт состава слова',emoji:'🧩',qs:[
+{q:'Найди приставку в слове «подводный».',o:['под-','вод','-н-','-ый'],a:0,why:'Под- — приставка. Она стоит перед корнем вод.'},
+{q:'Какой корень у слова «лесник»?',o:['лесник','ник','лес','лесн'],a:2,why:'Корень — лес. Сравни: лес, лесной, лесник.'},
+{q:'Какой суффикс есть в слове «грибник»?',o:['-гриб-','-ник-','под-','-ик-'],a:1,why:'В школьном разборе гриб- — корень, -ник- — суффикс, окончание нулевое.'},
+{q:'Как правильно разобрать слово «подснежник»?',o:['под- / снеж / -ник / нулевое окончание','подснеж / ник / -а','под- / сне / жник / нулевое окончание','подс / нежник / -и'],a:0,why:'Под- — приставка, снеж — корень, -ник — суффикс, окончание нулевое.'}
+]}
+];
+let index=0,score=0,regular=0,sortPoints=0,selected=null,answered=false,placements={},dragWord=null,report=[];
+function update(){ $('score').textContent=score;$('progressNum').textContent=index+' / 16';$('progressBar').style.width=(index/16*100)+'%';$('progressLabel').textContent=index<4?'Мастерская суффиксов':index<8?'Замок знаков':index<12?'Волшебный сад':'Лабиринт состава';}
+function start(){index=0;score=0;regular=0;sortPoints=0;report=[];$('intro').classList.add('hidden');$('finish').classList.add('hidden');$('game').classList.remove('hidden');show();window.scrollTo({top:0,behavior:'smooth'});}
+function show(){
+answered=false;selected=null;placements={};dragWord=null;
+const ch=chapters[Math.floor(index/4)],q=ch.qs[index%4];
+$('chapter').textContent=ch.title;$('qcount').textContent='Задание '+(index+1)+' из 16';$('qtag').textContent='ИСПЫТАНИЕ '+(index+1);$('qemoji').textContent=ch.emoji;$('question').textContent=q.q;
+$('feedback').classList.add('hidden');$('next').classList.add('hidden');$('check').classList.remove('hidden');
+$('standard').classList.toggle('hidden',q.type==='sort');$('sorting').classList.toggle('hidden',q.type!=='sort');
+if(q.type==='sort')buildSort(q);else{$('standard').innerHTML='';q.o.forEach((v,i)=>{let b=document.createElement('button');b.className='answer';b.textContent=String.fromCharCode(65+i)+'. '+v;b.addEventListener('click',()=>{if(answered)return;selected=i;[...$('standard').children].forEach(x=>x.classList.remove('chosen'));b.classList.add('chosen')});$('standard').appendChild(b)});}
+update();
+}
+function buildSort(q){
+$('wordbank').innerHTML='';root.querySelectorAll('.dropzone .items').forEach(x=>x.innerHTML='');
+q.words.forEach(([word],i)=>{placements[i]=null;let b=document.createElement('button');b.className='word';b.textContent=word;b.draggable=true;b.dataset.i=i;
+b.addEventListener('dragstart',e=>{if(answered)return;dragWord=i;e.dataTransfer.setData('text/plain',String(i));});
+b.addEventListener('click',()=>{if(answered)return;dragWord=i;root.querySelectorAll('#wordbank .word').forEach(x=>x.style.outline='');b.style.outline='3px solid #e6a83e';});
+$('wordbank').appendChild(b);});
+root.querySelectorAll('.dropzone').forEach(z=>{z.addEventListener('dragover',e=>{if(!answered){e.preventDefault();z.classList.add('over');}});z.addEventListener('dragleave',()=>z.classList.remove('over'));z.addEventListener('drop',e=>{e.preventDefault();z.classList.remove('over');let i=Number(e.dataTransfer.getData('text/plain'));put(i,z.dataset.zone);});z.addEventListener('click',()=>{if(dragWord!==null&&!answered){put(dragWord,z.dataset.zone);dragWord=null;}});});
+updatePlaced();
+}
+function put(i,zone){
+if(answered||i<0||i>=10)return;placements[i]=zone;
+const b=$('wordbank').querySelector('[data-i="'+i+'"]');if(b)b.classList.add('used');
+root.querySelectorAll('.dropzone .items .word[data-i="'+i+'"]').forEach(x=>x.remove());
+let target=root.querySelector('.dropzone[data-zone="'+zone+'"] .items');let clone=document.createElement('span');clone.className='word';clone.dataset.i=i;clone.textContent=chapters[2].qs[3].words[i][0];target.appendChild(clone);updatePlaced();
+}
+function updatePlaced(){let n=Object.values(placements).filter(x=>x!==null).length;$('placed').textContent='Разложено: '+n+' из 10';}
+function check(){
+if(answered)return;const q=chapters[Math.floor(index/4)].qs[index%4];let points=0,explain=q.why;
+if(q.type==='sort'){if(Object.values(placements).some(x=>x===null)){$('feedback').textContent='🧺 Разложи все слова по корзинам, прежде чем проверять!';$('feedback').style.background='#fff1ce';$('feedback').classList.remove('hidden');return;}
+q.words.forEach(([,z],i)=>{if(placements[i]===z)points++;});sortPoints+=points;score+=points;explain='Верно распределено '+points+' из 10 слов. '+q.why;
+}else{if(selected===null){$('feedback').textContent='🤔 Сначала выбери ответ!';$('feedback').style.background='#fff1ce';$('feedback').classList.remove('hidden');return;}
+points=selected===q.a?1:0;score+=points;regular+=points;[...$('standard').children].forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===selected&&i!==q.a)b.classList.add('wrong');});explain=(points?'🎉 Правильно! ':'💡 Не совсем! ')+explain;}
+answered=true;$('score').textContent=score;$('feedback').textContent=(points?(q.type==='sort'?'⭐ Ты заработал(а) '+points+' из 10 баллов!':'🌟 +1 балл! '):'✨ Баллы за это задание не начислены. ')+explain;$('feedback').style.background=points?'#d9f4e4':'#fff0d6';$('feedback').classList.remove('hidden');$('check').classList.add('hidden');$('next').classList.remove('hidden');report.push({title:chapters[Math.floor(index/4)].title,points,max:q.type==='sort'?10:1});
+}
+function next(){index++;if(index>=16){finish();return;}show();window.scrollTo({top:0,behavior:'smooth'});}
+function finish(){
+$('game').classList.add('hidden');$('finish').classList.remove('hidden');$('finalscore').textContent=score;$('regularScore').textContent=regular+' / 15';$('sortScore').textContent=sortPoints+' / 10';
+let stars=score>=22?5:score>=18?4:score>=14?3:score>=9?2:1;$('stars').textContent='⭐'.repeat(stars)+'☆'.repeat(5-stars);
+$('rank').textContent=score>=22?'🏆 Легенда грамматики!':score>=18?'🥇 Главный знаток слов!':score>=14?'🥈 Мастер грамматики!':score>=9?'🥉 Ученик волшебной школы':'🌱 Начинающий исследователь';
+$('medal').textContent=score>=22?'👑':score>=14?'🏆':'📚';
+$('message').textContent=score>=22?'Невероятно! Ты победил Кляксуса и стал хранителем Королевства слов!':score>=14?'Отличная работа! Ещё немного практики — и ты станешь настоящим грамматическим волшебником.':score>=9?'Хорошее начало! Повтори правила и попробуй пройти приключение снова.':'Не сдавайся! Ошибки помогают учиться. Попробуй ещё раз!';
+$('report').innerHTML='';chapters.forEach((c,i)=>{let group=report.slice(i*4,i*4+4),p=group.reduce((s,x)=>s+x.points,0),m=group.reduce((s,x)=>s+x.max,0);let d=document.createElement('div');d.style.cssText='display:flex;justify-content:space-between;gap:10px;border-radius:12px;padding:12px;background:#f5f2fa;font-size:14px';let a=document.createElement('span');a.textContent=c.title;let b=document.createElement('b');b.textContent=p+' / '+m;d.append(a,b);$('report').appendChild(d);});
+window.scrollTo({top:0,behavior:'smooth'});
+}
+$('start').addEventListener('click',start);$('check').addEventListener('click',check);$('next').addEventListener('click',next);$('restart').addEventListener('click',start);
+})();
+</script>
+</body>
+</html>
